@@ -35,6 +35,7 @@ sudo rsync -avczrx --numeric-ids \
  -e 'ssh' --delete-before / root@YOUR_HOST_IP_ADDRESS:/home/someone/rsync_stuff/
 ```
 
+Of course, you can also modify the script to make backups of only certain folders, files and so on.
 
 ## Notes
 
@@ -43,3 +44,7 @@ Here's a nice summary from the NVIDIA Jetson forums from linuxdev:
 https://forums.developer.nvidia.com/t/how-to-git-versin-rootfs/84029/10
 
 Thank you linuxdev!
+
+## Releases
+* JetPack 4.4 L4T 32.4.3
+* Initial Release
