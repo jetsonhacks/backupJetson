@@ -57,7 +57,7 @@ case $yn in
   * ) exit 1;;
 esac
 # We have a semi-qualified filepath
-sudo rsync -avcrltxAP --info=progress2,stats2 --delete-before --numeric-ids \
+sudo rsync -acvxAP --info=progress,stats2 --delete-before --numeric-ids \
 --exclude={"/dev/","/proc/","/sys/","/tmp/","/run/","/mnt/","/media/*","/lost+found"} \
  $SOURCE_TARGET / 
 

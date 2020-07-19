@@ -63,7 +63,13 @@ case $yn in
   * ) exit 1;;
 esac
 # We have a semi-qualified filepath
-sudo rsync -avcrltxAP --info=progress2,stats2 --delete-before --numeric-ids \
+# -a, --archive   archive mode; equals -rlptgoD (no -H,-A,-X)
+# -c              use checksum, not time and date
+# -v              verbose
+# -x              don't cross file system boundaries
+# -A              preserve Access Control List (ACLs)
+
+sudo rsync -acvxAP --info=progress,stats2 --delete-before --numeric-ids \
 --exclude={"/dev/","/proc/","/sys/","/tmp/","/run/","/mnt/","/media/*","/lost+found"} \
  / $FULL_BACKUP_FILENAME
 
