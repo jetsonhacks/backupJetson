@@ -1,11 +1,9 @@
 # backupJetson
 Backup a NVIDIA Jetson Developer Kit root system
 
-#WIP
-
 There are many ways to backup a Linux system. There are many apps and command line utilities that provide elegant solutions to this problem.
 
-This, on the other hand, is a very simple script using the utility rsync for making a copy of the rootfs (everything under the / directory) in another folder. Generally, the expected use is to make a copy of the rootfs as a system backup or as part of preparation for upgrading a system. Safety first!
+This, on the other hand, is a very simple script using the utility rsync for making a copy of the rootfs (everything under the / directory) in another folder on a different drive. Generally, the expected use is to make a copy of the rootfs as a system backup or as part of preparation for upgrading a system.
 
 The backup-rootfs script is explicitly dumb, with the intention that you will modify it to meet your needs. The script will recursively copy the '/' directory to the specified directory. The specified directory must exist, and it is up to you to check to make sure there is enough space available for the copy.
 
@@ -13,6 +11,14 @@ The backup-rootfs script is explicitly dumb, with the intention that you will mo
 ```
 ./backup-rootfs.sh [ -d directory | [-h]]
 ```
+This will copy the rootfs into the given directory. Typically, the directory is on a different storage device. Also it must exist. Some temporary files and system generated information is excluded in the copy, see the script for more details.
+
+## restore-rootfs
+```
+./restore-rootfs.sh [ -d directory | [-h]]
+```
+This is the compliment to the backup. The rootfs is restored from the archive in the given directory.
+
 
 ## About the rsync command used
 
@@ -21,7 +27,7 @@ For the backup we use rsync, a very flexible remote and local file synchronizati
 The backup-rootfs script assumes a local file. The command looks like:
 ``` 
 
-sudo rsync -avcrltxAP --info=progress2,stats2 --delete-before --numeric-ids \
+sudo rsync -acvxAP --info=progress,stats2 --delete-before --numeric-ids \
 --exclude={"/dev/","/proc/","/sys/","/tmp/","/run/","/mnt/","/media/*","/lost+found"} \
 / <filepath>
 ```
