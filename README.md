@@ -1,5 +1,5 @@
 # backupJetson
-Backup a NVIDIA Jetson Developer Kit root system
+Backup a NVIDIA Jetson Developer Kit root system: Full article on JetsonHacks: https://wp.me/p7ZgI9-3a1
 
 There are many ways to backup a Linux system. There are many apps and command line utilities that provide elegant solutions to this problem.
 
